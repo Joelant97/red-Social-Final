@@ -13,6 +13,11 @@ import java.util.List;
 @Table (name = "USUARIOS")
 public class Usuario implements Serializable {
 
+
+    @Column(name = "NOMBRE")
+    private String nombre;
+    @Column(name = "ADMINISTRADOR")
+    private Boolean administrador;
     @Id
     @Column(name = "USERNAME")
     @Expose
@@ -48,7 +53,9 @@ public class Usuario implements Serializable {
     public Usuario() {
     }
 
-    public Usuario(String username, String imagen, String email, String password, String descripcion, List<Post> posts, List<Post> liked, List<Comentario> comentarios, List<Usuario> followers, List<Usuario> following) {
+    public Usuario(String nombre, Boolean administrador, String username, String imagen, String email, String password, String descripcion, List<Post> posts, List<Post> liked, List<Comentario> comentarios, List<Usuario> followers, List<Usuario> following) {
+        this.nombre = nombre;
+        this.administrador = administrador;
         this.username = username;
         this.imagen = imagen;
         this.email = email;
@@ -94,6 +101,23 @@ public class Usuario implements Serializable {
     public void setImagen(String imagen) {
         this.imagen = imagen;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public boolean isAdministrador() {
+        return administrador;
+    }
+
+    public void setAdministrador(boolean administrador) {
+        this.administrador = administrador;
+    }
+
 
     public String getUsername() {
         return username;

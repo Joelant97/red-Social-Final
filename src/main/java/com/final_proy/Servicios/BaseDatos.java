@@ -41,7 +41,8 @@ public class BaseDatos {
         try {
             Class.forName("org.h2.Driver");
         } catch (ClassNotFoundException ex) {
-            //error
+            System.out.print("Error al tratar de registrar base de Datos");
+            System.out.println(ex.getMessage());
         }
     }
 
@@ -51,6 +52,8 @@ public class BaseDatos {
             con = DriverManager.getConnection(URL, "sa", "");
         } catch (SQLException ex) {
            // Logger.getLogger(EstudianteServices.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.print("Error en la Conexion");
+            System.out.println(ex.getMessage());
         }
         return con;
     }
@@ -61,9 +64,11 @@ public class BaseDatos {
             System.out.println("Conexión realizado con exito...");
         } catch (SQLException ex) {
             //Logger.getLogger(EstudianteServices.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.print("Fail X(");
+            System.out.println(ex.getMessage());
         }
     }
-        /**
+        /* *
          *
          * @throws SQLException
          */
@@ -71,7 +76,7 @@ public class BaseDatos {
             Server.createTcpServer("-tcpPort", "9092", "-tcpAllowOthers").start();
         }
 
-        /**
+        /* *
          *
          * @throws SQLException
          */
