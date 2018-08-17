@@ -5,7 +5,7 @@
         <a href="usuario/${usuario.getUsername()}">${usuario.getUsername()}</a>
     </div>
 
-    <a style="float: right; margin-right: 0.5%" href="/cerrarsesion"> | Cerrar secion</a>
+    <a style="float: right; margin-right: 0.5%" href="/cerrarsesion"> | Cerrar sesion</a>
     <a style="float: right ; margin-right: 0.5%" href="/crearpost"> | Crear post</a>
     <a style="float: right; margin-right: 0.5%" href="/usuarios_registrados">Usuarios Registrados</a>
 </header>

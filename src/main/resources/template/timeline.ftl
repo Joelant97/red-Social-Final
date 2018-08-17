@@ -19,7 +19,7 @@
     <div>
            <span style="float: left"><a href="usuario/${usuario.getUsername()}">${usuario.getUsername()}</a></span>
            <a class="icon-edit new" href="/crearpost"></a>
-     <a href="/cerrarsesion">Cerrar secion</a>
+     <a href="/cerrarsesion">Cerrar sesion</a>
     </div>
         </span>
 <div style="text-align: center;">

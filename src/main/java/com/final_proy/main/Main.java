@@ -260,7 +260,7 @@ public class Main {
         get("/cerrarsesion", (request, response) -> {
             request.session().invalidate();
             response.redirect("/");
-            return "Cesion cerrada";
+            return "sesion cerrada";
         });
         /**
          * registro
