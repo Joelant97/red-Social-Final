@@ -133,6 +133,7 @@ public class Main {
             return new ModelAndView(attributes, "vistaprevia.ftl");
         }, freeMarkerEngine);
 
+        //Gets Editar Cuenta:
         get("/editarcuenta", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
             Usuario usuario = request.session().attribute("usuario");
@@ -140,6 +141,12 @@ public class Main {
 
             attributes.put("upfile", usuario.getImagen());
             attributes.put("descripcion", usuario.getDescripcion());
+            attributes.put("apodo", usuario.getApodo());
+            attributes.put("nacimiento", usuario.getNacimiento());
+            attributes.put("lugarnaci", usuario.getLugarnaci());
+            attributes.put("direccion", usuario.getDireccion());
+            attributes.put("estudio", usuario.getEstudio());
+            attributes.put("trabajo", usuario.getTrabajo());
             attributes.put("email", usuario.getEmail());
             attributes.put("password", usuario.getPassword());
             attributes.put("password2", "");
@@ -149,9 +156,7 @@ public class Main {
         }, freeMarkerEngine);
 
 
-
-
-
+        //Editar Cuenta TimeLine:
 
         post("/editarcuenta", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
@@ -183,6 +188,12 @@ public class Main {
                         }
                         usuario.setDescripcion(request.queryParams("descripcion"));
                         usuario.setEmail(request.queryParams("email"));
+                        usuario.setApodo(request.queryParams("apodo"));
+                        usuario.setNacimiento(request.queryParams("nacimiento"));
+                        usuario.setLugarnaci(request.queryParams("lugarnaci"));
+                        usuario.setDireccion(request.queryParams("direccion"));
+                        usuario.setEstudio(request.queryParams("estudio"));
+                        usuario.setTrabajo(request.queryParams("trabajo"));
 
                     } else {
                         halt("Contraseña no coincide <a href=\"/editarcuenta\">Volver</a>");
@@ -275,6 +286,8 @@ public class Main {
             return new ModelAndView(attributes, "singin.ftl");
         }, freeMarkerEngine);
 
+
+        //Validar Campos de Registro --> Login:
         post("/register", (request, response) -> {
             //TODO validar todos los campos
             Map<String, Object> attributes = new HashMap<>();
@@ -298,6 +311,12 @@ public class Main {
                             usuario.setImagen(imageDataString);
                             usuario.setPassword(request.queryParams("password"));
                             usuario.setUsername(request.queryParams("username"));
+                            usuario.setApodo(request.queryParams("apodo"));
+                            usuario.setNacimiento(request.queryParams("nacimiento"));
+                            usuario.setLugarnaci(request.queryParams("lugarnaci"));
+                            usuario.setDireccion(request.queryParams("direccion"));
+                            usuario.setEstudio(request.queryParams("estudio"));
+                            usuario.setTrabajo(request.queryParams("trabajo"));
                             usuario.setDescripcion(request.queryParams("descripcion"));
                             usuario.setEmail(request.queryParams("email"));
                             MantenimientoUsuario.getInstancia().crear(usuario);
@@ -332,7 +351,6 @@ public class Main {
 
 
             //CODIGO PARA GUARDAR LA IMAGEN
-            //- Servlet 3.x config
             Path tempFile = Files.createTempFile(uploadDir.toPath(), "", "");
             request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
             try (InputStream is = request.raw().getPart("upfile").getInputStream()) {

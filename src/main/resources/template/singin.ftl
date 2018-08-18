@@ -75,6 +75,24 @@
                                 <div class="form-group ">
                                     <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="${email!}" required>
                                 </div>
+                                <div class="form-group ">
+                                    <input type="text" required name="apodo" id="apodo" tabindex="1" class="form-control" placeholder="Tu Apodo" value="${apodo!}" >
+                                </div>
+                                <div class="form-group ">
+                                    <input type="text" required name="lugarnaci" id="lugarnaci" tabindex="1" class="form-control" placeholder="Su lugar de Nacimiento" value="${lugarnaci!}" >
+                                </div> 
+                                <div class="form-group ">
+                                    <input type="date" required name="nacimiento" id="nacimiento" tabindex="1" class="form-control" placeholder="Fecha de Nacimiento (dd-MM-yyyy)" value="${nacimiento!}" >
+                                </div>
+                                <div class="form-group ">
+                                    <input type="text" required name="direccion" id="direccion" tabindex="1" class="form-control" placeholder="Su Direccion" value="${direccion!}" >
+                                </div>
+                                <div class="form-group ">
+                                    <input type="text" required name="estudio" id="estudio" tabindex="1" class="form-control" placeholder="Lugar donde Estudia" value="${estudio!}" >
+                                </div>
+                                <div class="form-group ">
+                                    <input type="text" required name="trabajo" id="trabajo" tabindex="1" class="form-control" placeholder="Lugar donde Trabaja" value="${trabajo!}" >
+                                </div>
                                 <div class="form-group">
                                     <input type="text" name="descripcion" id="descripcion" tabindex="1" class="form-control" placeholder="Sobre ti" value="${descripcion!}" required>
                                 </div>

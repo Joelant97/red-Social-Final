@@ -21,6 +21,18 @@ public class Usuario implements Serializable {
     private String username;
     @Column(name = "IMAGEN", length = 10000000)
     private String imagen;
+    @Column(name = "APODO")
+    private String apodo;
+    @Column(name = "NACIMIENTO")
+    private String nacimiento;
+    @Column(name = "LUGARNACI")
+    private String lugarnaci;
+    @Column(name = "DIRECCION")
+    private String direccion;
+    @Column(name = "ESTUDIO")
+    private String estudio;
+    @Column(name = "TRABAJO")
+    private String trabajo;
     @Column(name = "EMAIL")
     private String email;
     @Column(name = "PASSWORD")
@@ -50,8 +62,14 @@ public class Usuario implements Serializable {
     public Usuario() {
     }
 
-    public Usuario(String username, String imagen, String email, String password, String descripcion, List<Post> posts, List<Post> liked, List<Comentario> comentarios, List<Usuario> followers, List<Usuario> following) {
+    public Usuario(String apodo, String nacimiento, String lugarnaci, String direccion, String estudio, String trabajo, String username, String imagen, String email, String password, String descripcion, List<Post> posts, List<Post> liked, List<Comentario> comentarios, List<Usuario> followers, List<Usuario> following) {
 
+        this.apodo = apodo;
+        this.nacimiento = nacimiento;
+        this.lugarnaci = lugarnaci;
+        this.direccion = direccion;
+        this.estudio = estudio;
+        this.trabajo = trabajo;
         this.username = username;
         this.imagen = imagen;
         this.email = email;
@@ -98,13 +116,46 @@ public class Usuario implements Serializable {
         this.imagen = imagen;
     }
 
-
     public String getUsername() {
         return username;
     }
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getApodo(){ return apodo; }
+
+    public void setApodo(String apodo) {
+        this.apodo = apodo;
+    }
+    public String getNacimiento(){return nacimiento; }
+
+    public void setNacimiento(String nacimiento) {
+        this.nacimiento = nacimiento;
+    }
+
+    public String getLugarnaci() {return lugarnaci; }
+
+    public void setLugarnaci(String lugarnaci) {
+        this.lugarnaci = lugarnaci;
+    }
+    public String getDireccion() {return direccion; }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getEstudio() {return estudio; }
+
+    public void setEstudio(String estudio) {
+        this.estudio = estudio;
+    }
+
+    public String getTrabajo() {return trabajo; }
+
+    public void setTrabajo(String trabajo) {
+        this.trabajo = trabajo;
     }
 
     public String getEmail() {

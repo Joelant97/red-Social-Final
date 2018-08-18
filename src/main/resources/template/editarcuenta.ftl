@@ -96,6 +96,24 @@
                                     <input type="text" name="descripcion" id="descripcion" tabindex="1" class="form-control" placeholder="Sobre ti" value="${descripcion!}">
                                 </div>
                                 <div class="form-group">
+                                    <input type="text" name="apodo" id="apodo" tabindex="1" class="form-control" placeholder="Tu Apodo" value="${apodo!}">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="lugarnaci" id="lugarnaci" tabindex="1" class="form-control" placeholder="Lugar donde Nacio" value="${lugarnaci!}">
+                                </div>
+                                <div class="form-group">
+                                    <input type="date" name="nacimiento" id="nacimiento" tabindex="1" class="form-control" placeholder="Fecha de Nacimiento" value="${nacimiento!}">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="direccion" id="direccion" tabindex="1" class="form-control" placeholder="Su Direccion" value="${direccion!}">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="estudio" id="estudio" tabindex="1" class="form-control" placeholder="Lugar donde Estudia" value="${estudio!}">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="trabajo" id="trabajo" tabindex="1" class="form-control" placeholder="Lugar donde Trabaja" value="${trabajo!}">
+                                </div>
+                                <div class="form-group">
                                     <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" value="${password!}">
                                 </div>
                                 <div class="form-group">
