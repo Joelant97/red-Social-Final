@@ -21,6 +21,8 @@ public class Usuario implements Serializable {
     private String username;
     @Column(name = "IMAGEN", length = 10000000)
     private String imagen;
+    @Column(name = "ADMINISTRADOR")
+    private Boolean administrador;
     @Column(name = "APODO")
     private String apodo;
     @Column(name = "NACIMIENTO")
@@ -62,8 +64,9 @@ public class Usuario implements Serializable {
     public Usuario() {
     }
 
-    public Usuario(String apodo, String nacimiento, String lugarnaci, String direccion, String estudio, String trabajo, String username, String imagen, String email, String password, String descripcion, List<Post> posts, List<Post> liked, List<Comentario> comentarios, List<Usuario> followers, List<Usuario> following) {
+    public Usuario(Boolean administrador, String apodo, String nacimiento, String lugarnaci, String direccion, String estudio, String trabajo, String username, String imagen, String email, String password, String descripcion, List<Post> posts, List<Post> liked, List<Comentario> comentarios, List<Usuario> followers, List<Usuario> following) {
 
+        this.administrador = administrador;
         this.apodo = apodo;
         this.nacimiento = nacimiento;
         this.lugarnaci = lugarnaci;
@@ -122,6 +125,13 @@ public class Usuario implements Serializable {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+    public boolean isAdministrador() {
+        return administrador;
+    }
+
+    public void setAdministrador(boolean administrador) {
+        this.administrador = administrador;
     }
 
     public String getApodo(){ return apodo; }

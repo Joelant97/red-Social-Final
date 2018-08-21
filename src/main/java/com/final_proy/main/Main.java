@@ -26,6 +26,8 @@ public class Main {
 
     public static void main(String[] args) {
 
+        //Asignando el HerokuPort:
+        port(getHerokuAssignedPort());
 
         staticFileLocation("/Recursos");
         enableDebugScreen();
@@ -331,12 +333,30 @@ public class Main {
 
             }
 
-
             attributes.put("error", error);
             attributes.put("username", request.queryParams("username"));
             attributes.put("email", request.queryParams("email"));
             return new ModelAndView(attributes, "singin.ftl");
         }, freeMarkerEngine);
+
+        //Crear Usuario Administrador por defecto:
+        ClientService clientService = new ClientService();
+        if(clientService.getAllUsers().size() < 1){
+            Usuario administrador = new Usuario();
+            administrador.setUsername("admin");
+            administrador.setAdministrador(true);
+            administrador.setPassword("admin");
+            administrador.setDescripcion("Este es el Usuario Administrador por defecto");
+            administrador.setEmail("joelant@admin.com");
+
+            if(clientService.crearCliente(administrador)){
+                System.out.println("El Usuario admin se ha creado automaticamente...");
+            }
+
+        }
+
+        //////////////////////////////////////////////////////
+
 
         get("/crearpost", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
@@ -573,6 +593,15 @@ public class Main {
 
         }
         return listaEtiquetas;
+    }
+
+    private static int getHerokuAssignedPort() {
+        ProcessBuilder processBuilder = new ProcessBuilder();
+        if (processBuilder.environment().get("PORT") != null) {
+            return Integer.parseInt(processBuilder.environment().get("PORT"));
+        }
+
+        return 4567;
     }
 
 
