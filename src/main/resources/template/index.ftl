@@ -7,8 +7,8 @@
         Red-Social
     </div>
     <div class="titles">
-        <h1>Mini <span>Instagram</span></h1>
-        <h2>Instagram creado con Spark Framerwork</h2>
+        <h1>Mini <span>Social Network</span></h1>
+        <h2>Red Social creada con Spark Framerwork</h2>
     </div>
 </header>
 

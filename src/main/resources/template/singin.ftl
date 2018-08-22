@@ -21,7 +21,7 @@
                             <a href="#" class="active" id="login-form-link">Login</a>
                         </div>
                         <div class="col-xs-6">
-                            <a href="#" id="register-form-link">Register</a>
+                            <a href="#" id="register-form-link">Registrarse</a>
                         </div>
                     </div>
                     <hr>
@@ -38,7 +38,7 @@
                                 </div>
                                 <div class="form-group text-center">
                                     <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
-                                    <label for="remember"> Remember Me</label>
+                                    <label for="remember"> Guardar Sesión</label>
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
@@ -105,7 +105,7 @@
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-sm-6 col-sm-offset-3">
-                                            <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+                                            <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Registrarse Ahora">
                                         </div>
                                     </div>
                                 </div>
