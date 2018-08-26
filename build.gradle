@@ -1,7 +1,9 @@
 group 'final_proy'
 version '1.0-SNAPSHOT'
+mainClassName = "org.rd.barcamp.sparkbarcamp.main.Main"
 
 apply plugin: 'java'
+apply plugin: 'application'
 
 sourceCompatibility = 1.8
 
@@ -21,7 +23,7 @@ dependencies {
     compile group: 'com.sparkjava', name: 'spark-template-freemarker', version: '2.3'
     compile 'com.sparkjava:spark-debug-tools:0.5'
 
-    // https://mvnrepository.com/artifact/org.jasypt/jasypt
+    //https://mvnrepository.com/artifact/org.jasypt/jasypt
     compile group: 'org.jasypt', name: 'jasypt', version: '1.4.1'
 
     compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.21'

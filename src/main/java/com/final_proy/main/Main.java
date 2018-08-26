@@ -201,7 +201,15 @@ public class Main {
                         halt("Contraseña no coincide <a href=\"/editarcuenta\">Volver</a>");
                     }
                 } else {
-                    halt("El archivo no es una imagen <a href=\"/editarcuenta\">Volver</a>");
+                    //halt("El archivo no es una imagen <a href=\"/editarcuenta\">Volver</a>");
+                    usuario.setDescripcion(request.queryParams("descripcion"));
+                    usuario.setEmail(request.queryParams("email"));
+                    usuario.setApodo(request.queryParams("apodo"));
+                    usuario.setNacimiento(request.queryParams("nacimiento"));
+                    usuario.setLugarnaci(request.queryParams("lugarnaci"));
+                    usuario.setDireccion(request.queryParams("direccion"));
+                    usuario.setEstudio(request.queryParams("estudio"));
+                    usuario.setTrabajo(request.queryParams("trabajo"));
                 }
 
                 MantenimientoUsuario.getInstancia().editar(usuario);
@@ -219,16 +227,16 @@ public class Main {
             Usuario usuarioSesion = request.session().attribute("usuario");
             List<Usuario> listaUsuarios = MantenimientoUsuario.getInstancia().findAll();
             List<Usuario> followings = usuarioSesion.getFollowing();
-            System.out.println("Cantidad de followings: " + followings.size());
+            System.out.println("Cantidad de Seguidores: " + followings.size());
             for (Usuario usuario: listaUsuarios){
                 System.out.println("Usuario: " + usuario.getUsername());
                 for(Usuario following: followings){
-                    System.out.println("Following: " + following.getUsername());
+                    System.out.println("Siguiendo: " + following.getUsername());
                     if(usuario.getUsername().equals(following.getUsername())){
-                        System.out.println("Unfollow");
+                        System.out.println("Dejar de Seguir");
                         break;
                     }else{
-                        System.out.println("Follow");
+                        System.out.println("Seguir");
                         break;
                     }
 

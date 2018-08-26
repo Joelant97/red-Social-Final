@@ -14,7 +14,7 @@
                     <div class="row photos-wrap">
                         <!-- Instafeed target div -->
                         <div id="instafeed"></div>
-                        <!-- The following HTML will be our template inside instafeed -->
+
                         <div class="center-block">
                             <h4 style="align-content: center">Usuarios registrados</h4>
                             <#list usuarios as usuario>
@@ -35,7 +35,7 @@
                                                 <#list followings as following>
                                                      <#if usuario.getUsername() == following.getUsername()>
                                                         <form action="/unfollow_usuario">
-                                                            <input type="submit" value="Unfollow" style="float: right">
+                                                            <input type="submit" value="Dejar de Seguir" style="float: right">
                                                             <input type="hidden" value="${usuario.getUsername()}" name="id" />
                                                         </form>
                                                          <#assign x = 1>
@@ -44,14 +44,14 @@
                                                     <#else>
                                                         <#assign x = 2>
                                                         <form action="/agregar_usuario">
-                                                            <input type="submit" value="Follow" style="float: right">
+                                                            <input type="submit" value="Seguir" style="float: right">
                                                             <input type="hidden" value="${usuario.getUsername()}" name="id" />
                                                         </form>
 
                                                 </#list>
                                                 <#if x==0>
                                                     <form action="/agregar_usuario">
-                                                        <input type="submit" value="Follow" style="float: right">
+                                                        <input type="submit" value="Seguir" style="float: right">
                                                         <input type="hidden" value="${usuario.getUsername()}" name="id" />
                                                     </form>
                                                 </#if>

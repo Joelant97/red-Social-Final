@@ -3,7 +3,7 @@
 <header>
     <img src="data:image/jpeg;base64,${usuario.getImagen()!}" alt="Imagen de perfil">
     <div class="name fancy-font">
-        <a href="/home">Clone-Instagram</a>
+        <a href="/home">Red-Social</a>
     </div>
 <#if usuario.getUsername()== usuarioEnSesion.getUsername() >
     <form action="/editarcuenta">
@@ -15,7 +15,7 @@
     <div class="titles">
         <h1>Hello! <span>I'm ${usuario.getUsername()}</span></h1>
         <h2>${usuario.getDescripcion()}</h2>
-        <h3>Followers:${followers} | Following: ${following} </h3>
+        <h3>Seguidores:${followers} | Seguidos: ${following} </h3>
     </div>
 
 </header>
