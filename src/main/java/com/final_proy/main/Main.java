@@ -68,8 +68,10 @@ public class Main {
 
             Usuario usuario = request.session().attribute("usuario");
             List<Usuario> followings =  usuario.getFollowing();
+            List<Usuario> amigoss = usuario.getAmigos();
             List<Post> listaPost = MantenimientoPost.getInstancia().findAll();
             List<Post> listaFollowing = new ArrayList<Post>();
+            List<Post> listaAmigos = new ArrayList<Post>();
             for(Post post: listaPost){
                 System.out.println("Entre al loop donde estan todos los post");
                 if(followings.size()==0){
@@ -88,12 +90,31 @@ public class Main {
                         }
                     }
                 }
+                if(amigoss.size()==0){
+                    if (post.getUsuario().getUsername().equals(usuario.getUsername())){
+                        listaAmigos.add(post);
+                    }
+                }else{
+                    for(Usuario amigos: amigoss){
+                        System.out.println("Entre al loop donde estan todos los Amigos");
+                        System.out.println("Cantidad de amigos: " +amigoss.size());
+                        System.out.println("amigo actual: " + amigos.getUsername());
+                        System.out.println("Usuario del Post: " + post.getUsuario().getUsername());
+                        if (post.getUsuario().getUsername().equals(amigos.getUsername()) || post.getUsuario().getUsername().equals(usuario.getUsername())){
+                            listaAmigos.add(post);
+                            break;
+                        }
+                    }
+                }
 
 
             }
             System.out.println("Listados de post en el timeline: "+listaFollowing.size());
+            System.out.println("Listados de post en el timeline: "+listaAmigos.size());
             Collections.reverse(listaFollowing);
+            Collections.reverse(listaAmigos);
             attributes.put("posts", listaFollowing);
+            attributes.put("posts", listaAmigos);
             attributes.put("usuario", usuario);
 
             return new ModelAndView(attributes, "timelinevs2.ftl");
@@ -105,6 +126,7 @@ public class Main {
             Usuario usuario = MantenimientoUsuario.getInstancia().find(request.params("username"));
             System.out.println(usuario.getUsername());
             int followers =  usuario.getFollowers().size();
+            int amigos = usuario.getAmigos().size();
             int following = usuario.getFollowing().size();
             Usuario userInSesion = request.session().attribute("usuario");
             List<Post> listaPostUsuario = usuario.getPosts();
@@ -112,6 +134,7 @@ public class Main {
             Collections.reverse(listaPostUsuario);
             attributes.put("posts", listaPostUsuario);
             attributes.put("usuario", usuario);
+            attributes.put("amigos",amigos);
             attributes.put("followers", followers);
             attributes.put("following", following);
             attributes.put("usuarioEnSesion", userInSesion);
@@ -227,7 +250,9 @@ public class Main {
             Usuario usuarioSesion = request.session().attribute("usuario");
             List<Usuario> listaUsuarios = MantenimientoUsuario.getInstancia().findAll();
             List<Usuario> followings = usuarioSesion.getFollowing();
+            List<Usuario> amigoss = usuarioSesion.getAmigos();
             System.out.println("Cantidad de Seguidores: " + followings.size());
+            System.out.println("Cantidad de Amigos: "+ amigoss.size());
             for (Usuario usuario: listaUsuarios){
                 System.out.println("Usuario: " + usuario.getUsername());
                 for(Usuario following: followings){
@@ -241,11 +266,23 @@ public class Main {
                     }
 
                 }
+                for(Usuario amigos: amigoss){
+                    System.out.println("Amigo: " + amigos.getUsername());
+                    if(usuario.getUsername().equals(amigos.getUsername())){
+                        System.out.println("Dejar de ser Amigo");
+                        break;
+                    }else{
+                        System.out.println("Agregar Amigo");
+                        break;
+                    }
+                }
+
             }
 
             attributes.put("usuarioSesion",usuarioSesion);
             attributes.put("usuarios", listaUsuarios);
             attributes.put("followings", followings);
+            attributes.put("amigoss",amigoss);
 
 
             return new ModelAndView(attributes, "usuariosRegistrados.ftl");
@@ -522,6 +559,58 @@ public class Main {
 
             return "";
         });
+
+        get("/agregar_amigo", (request, response) -> {
+
+
+            Map<String, Object> attributes = new HashMap<>();
+
+            String id_usuario = request.queryParams("id");
+            System.out.println(id_usuario);
+            Usuario usuarioSesion = request.session().attribute("usuario");
+            Usuario usuario = MantenimientoUsuario.getInstancia().find(id_usuario);
+
+            if(!usuarioSesion.getAmigos().contains(usuario)){
+                List<Usuario> usuarioSesionAmigos = usuarioSesion.getAmigos();
+                List<Usuario> usuarioAgcamigo = usuario.getAgcamigo();
+                usuarioSesionAmigos.add(usuario);
+                usuarioAgcamigo.add(usuarioSesion);
+                MantenimientoUsuario.getInstancia().editar(usuarioSesion);
+                MantenimientoUsuario.getInstancia().editar(usuario);
+            }
+
+            response.redirect("/home");
+
+            return "";
+        });
+
+        get("/desligar_amigo", (request, response) -> {
+
+
+            Map<String, Object> attributes = new HashMap<>();
+
+            String id_usuario = request.queryParams("id");
+            System.out.println(id_usuario);
+            Usuario usuarioSesion = request.session().attribute("usuario");
+            Usuario usuario = MantenimientoUsuario.getInstancia().find(id_usuario);
+            List<Usuario> nuevaLista = new ArrayList<Usuario>();
+            for(Usuario amigos: usuarioSesion.getAmigos()){
+                if(amigos.getUsername().equals(usuario.getUsername())){
+
+                    MantenimientoUsuario.getInstancia().eliminaragcamigo(usuarioSesion.getUsername(),usuario.getUsername());
+
+                }else{
+                    nuevaLista.add(amigos);
+                }
+            }
+            usuarioSesion.setAmigos(nuevaLista);
+            MantenimientoUsuario.getInstancia().editar(usuarioSesion);
+
+            response.redirect("/home");
+
+            return "";
+        });
+
 
         get("/eliminarpost/:id_post", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();

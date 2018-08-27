@@ -33,16 +33,16 @@
                                             <#if usuario.getUsername()!= usuarioSesion.getUsername() >
                                                 <#assign x = 0>
                                                 <#list followings as following>
-                                                     <#if usuario.getUsername() == following.getUsername()>
+                                                    <#if usuario.getUsername() == following.getUsername()>
                                                         <form action="/unfollow_usuario">
                                                             <input type="submit" value="Dejar de Seguir" style="float: right">
                                                             <input type="hidden" value="${usuario.getUsername()}" name="id" />
                                                         </form>
-                                                         <#assign x = 1>
+                                                        <#assign x = 1>
                                                         <#break >
                                                     </#if>
-                                                    <#else>
-                                                        <#assign x = 2>
+                                                <#else>
+                                                    <#assign x = 2>
                                                         <form action="/agregar_usuario">
                                                             <input type="submit" value="Seguir" style="float: right">
                                                             <input type="hidden" value="${usuario.getUsername()}" name="id" />
@@ -52,6 +52,30 @@
                                                 <#if x==0>
                                                     <form action="/agregar_usuario">
                                                         <input type="submit" value="Seguir" style="float: right">
+                                                        <input type="hidden" value="${usuario.getUsername()}" name="id" />
+                                                    </form>
+                                                </#if>
+												<#assign x = 3>
+                                                <#list amigoss as amigos>
+                                                    <#if usuario.getUsername() == amigos.getUsername()>
+                                                        <form action="/desligar_usuario">
+                                                            <input type="submit" value="Dejar de ser Amigo" style="float: right">
+                                                            <input type="hidden" value="${usuario.getUsername()}" name="id" />
+                                                        </form>
+                                                        <#assign x = 4>
+                                                        <#break >
+                                                    </#if>
+                                                <#else>
+                                                    <#assign x = 5>
+                                                        <form action="/agregar_amigo">
+                                                            <input type="submit" value="Agregar Amigo" style="float: right">
+                                                            <input type="hidden" value="${usuario.getUsername()}" name="id" />
+                                                        </form>
+
+                                                </#list>
+                                                <#if x==3>
+                                                    <form action="/agregar_amigo">
+                                                        <input type="submit" value="Agregar Amigo" style="float: right">
                                                         <input type="hidden" value="${usuario.getUsername()}" name="id" />
                                                     </form>
                                                 </#if>

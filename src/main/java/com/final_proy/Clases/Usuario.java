@@ -59,13 +59,26 @@ public class Usuario implements Serializable {
 
     @ManyToMany(mappedBy="followers", fetch = FetchType.EAGER)
     private List<Usuario> following = new ArrayList<Usuario>();
+     @ManyToMany(fetch = FetchType.EAGER,cascade ={CascadeType.DETACH})
+    
+    @JoinTable(name="USER_AGCAMIGO",
+            joinColumns={@JoinColumn(name="USERNAME")},
+            inverseJoinColumns={@JoinColumn(name="AGCAMIGO_ID")})
+    private List<Usuario> agcamigo = new ArrayList<Usuario>();
+
+    @ManyToMany(mappedBy="agcamigo", fetch = FetchType.EAGER)
+    private List<Usuario> amigos = new ArrayList<Usuario>();
+
+
 
 
     public Usuario() {
     }
 
-    public Usuario(Boolean administrador, String apodo, String nacimiento, String lugarnaci, String direccion, String estudio, String trabajo, String username, String imagen, String email, String password, String descripcion, List<Post> posts, List<Post> liked, List<Comentario> comentarios, List<Usuario> followers, List<Usuario> following) {
+    public Usuario(List<Usuario> agcamigo, List<Usuario> amigos, Boolean administrador, String apodo, String nacimiento, String lugarnaci, String direccion, String estudio, String trabajo, String username, String imagen, String email, String password, String descripcion, List<Post> posts, List<Post> liked, List<Comentario> comentarios, List<Usuario> followers, List<Usuario> following) {
 
+        this.agcamigo = agcamigo;
+        this.amigos = amigos; 
         this.administrador = administrador;
         this.apodo = apodo;
         this.nacimiento = nacimiento;
@@ -109,6 +122,22 @@ public class Usuario implements Serializable {
 
     public void setFollowing(List<Usuario> following) {
         this.following = following;
+    }
+
+    public List<Usuario> getAgcamigo(){
+        return agcamigo;
+    }
+
+    public void setAgcamigo(List<Usuario> agcamigo){
+        this.agcamigo = agcamigo; 
+    }
+
+    public List<Usuario> getAmigos(){
+        return amigos; 
+    }
+
+    public void setAmigos(List<Usuario> amigos){
+        this.amigos = amigos; 
     }
 
     public String getImagen() {

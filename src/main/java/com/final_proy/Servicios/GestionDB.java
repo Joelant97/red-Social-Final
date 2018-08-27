@@ -95,6 +95,22 @@ public class GestionDB<T> {
         }
     }
 
+     public void eliminaragcamigo(String usuarioSesion, String usuario){
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        try {
+            em.createNativeQuery("DELETE FROM USER_AGCAMIGO WHERE USERNAME=? AND AGCAMIGO_ID=?").setParameter(1,usuario).setParameter(2,usuarioSesion).executeUpdate();
+
+            //em.remove(em.contains(entidad) ? entidad : em.merge(entidad));
+            em.getTransaction().commit();
+        }catch (Exception ex){
+            em.getTransaction().rollback();
+            throw  ex;
+        } finally {
+            em.close();
+        }
+    }
+
     public void eliminarlikes(String usuarioSesion, long post){
         EntityManager em = getEntityManager();
         em.getTransaction().begin();
