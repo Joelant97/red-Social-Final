@@ -394,6 +394,7 @@ public class Main {
             administrador.setDescripcion("Este es el Usuario Administrador por defecto");
             administrador.setEmail("joelant@admin.com");
 
+
             if(clientService.crearCliente(administrador)){
                 System.out.println("El Usuario admin se ha creado automaticamente...");
             }
@@ -444,7 +445,20 @@ public class Main {
                     MantenimientoPost.getInstancia().crear(post);
                     response.redirect("/home");
                 } else {
-                    halt("El archivo no es una imagen");
+                    //halt("El archivo no es una imagen");
+                    String etiquetasStr = request.queryParams("etiquetas");
+                    String etiquetas[] = etiquetasStr.split("\\s*,\\s*");
+                    Usuario usuario = request.session().attribute("usuario");
+                    Post post = new Post();
+                    post.setUsuario(usuario);
+                    post.setCuerpo(request.queryParams("contenido"));
+                    List<Etiqueta> listaEtiquetas = creacionEtiquetas(etiquetas);
+                    post.setEtiquetas(listaEtiquetas);
+                    post.setFecha(LocalDate.now());
+                    post.setImagen(imageDataString);
+
+                    MantenimientoPost.getInstancia().crear(post);
+                    response.redirect("/home");
                 }
             }
 

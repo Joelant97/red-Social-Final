@@ -25,8 +25,9 @@
                                             <img src="data:image/jpeg;base64,${usuario.getImagen()!}">
                                         </div>
                                         <div>
-                                            <a href="usuario/${usuario.getUsername()}"><h4>${usuario.getUsername()}</h4></a>
+                                            <a href="usuario/${usuario.getUsername()} "><h4>${usuario.getUsername()} </h4></a>
                                         </div>
+
 
                                         <div>
 
@@ -87,8 +88,12 @@
 
                                     </div>
 
+
                                 </div>
+
                             </#list>
+
+
                         </div>
 
                     </div>

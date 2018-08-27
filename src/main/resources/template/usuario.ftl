@@ -13,9 +13,15 @@
 </#if>
 
     <div class="titles">
-        <h1>Hello! <span>I'm ${usuario.getUsername()}</span></h1>
+        <h1>Hola! <span>Soy ${usuario.getUsername()}</span></h1>
         <h2>${usuario.getDescripcion()}</h2>
-        <h3>Seguidores:${followers} | Seguidos: ${following} | Amigos: ${amigos} </h3>
+        <br><br><br>
+        <h2> Apodo:${usuario.getApodo()} | Lugar de Nacimiento: ${usuario.getLugarnaci()} | Fecha de Nacimiento: ${usuario.getNacimiento()} <br>| Estudia en: ${usuario.getEstudio()} | Trabaja en: ${usuario.getTrabajo()}</h2>
+        <br><br>
+        <h3>Seguidores:${followers} | Seguidos: ${following} | Amigos: ${amigos}</h3>
+
+
+
     </div>
 
 </header>
@@ -25,7 +31,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="instagram-content">
-                    <h3>Latest Photos</h3>
+                    <h3>Ultimas Fotos</h3>
                     <div class="row photos-wrap">
                         <!-- Instafeed target div -->
                         <div id="instafeed"></div>
