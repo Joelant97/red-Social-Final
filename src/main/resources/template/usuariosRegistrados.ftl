@@ -58,7 +58,7 @@
 												<#assign x = 3>
                                                 <#list amigoss as amigos>
                                                     <#if usuario.getUsername() == amigos.getUsername()>
-                                                        <form action="/desligar_usuario">
+                                                        <form action="/desligar_amigo">
                                                             <input type="submit" value="Dejar de ser Amigo" style="float: right">
                                                             <input type="hidden" value="${usuario.getUsername()}" name="id" />
                                                         </form>
