@@ -1,6 +1,6 @@
 group 'final_proy'
 version '1.0-SNAPSHOT'
-//mainClassName = "org.rd.barcamp.sparkbarcamp.main.Main"
+
 
 apply plugin: 'java'
 apply plugin: 'application'
@@ -10,6 +10,7 @@ sourceCompatibility = 1.8
 repositories {
     mavenCentral()
 }
+mainClassName = "com.final_proy.main.Main"
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
