@@ -124,6 +124,27 @@ public class Main {
             Map<String, Object> attributes = new HashMap<>();
 
             Usuario usuario = MantenimientoUsuario.getInstancia().find(request.params("username"));
+            List<Usuario> amigoss = usuario.getAmigos();
+            List<Post> listaPost = MantenimientoPost.getInstancia().findAll();
+            List<Post> listaPostAmigo = new ArrayList<Post>();
+
+            for(Post post: listaPost) {
+
+                if (amigoss.size() == 0) {
+                    if (post.getUsuario().getUsername().equals(usuario.getUsername())) {
+                        listaPostAmigo.add(post);
+                    }
+                } else {
+                    for (Usuario amigos : amigoss) {
+
+                        if (post.getUsuario().getUsername().equals(amigos.getUsername())) {
+                            listaPostAmigo.add(post);
+                        }
+
+                    }
+                }
+
+            }
             System.out.println(usuario.getUsername());
             int followers =  usuario.getFollowers().size();
             int amigos = usuario.getAmigos().size();
@@ -133,6 +154,7 @@ public class Main {
             System.out.println(listaPostUsuario.size());
             Collections.reverse(listaPostUsuario);
             attributes.put("posts", listaPostUsuario);
+            attributes.put("posts", listaPostAmigo);
             attributes.put("usuario", usuario);
             attributes.put("amigos",amigos);
             attributes.put("followers", followers);
@@ -157,6 +179,9 @@ public class Main {
 
             return new ModelAndView(attributes, "vistaprevia.ftl");
         }, freeMarkerEngine);
+
+        
+
 
         //Gets Editar Cuenta:
         get("/editarcuenta", (request, response) -> {

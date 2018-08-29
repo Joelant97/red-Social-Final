@@ -12,6 +12,12 @@
 
 </#if>
 
+<#if usuario.getUsername()== usuarioEnSesion.getUsername()>
+<form action="/crearpost">
+    <input style="float: right" type="submit" value="Crear Post">
+</form>
+</#if>
+
     <div class="titles">
         <h1>Hola! <span>Soy ${usuario.getUsername()}</span></h1>
         <h2>${usuario.getDescripcion()}</h2>
@@ -20,9 +26,9 @@
         <br><br>
         <h3>Seguidores:${followers} | Seguidos: ${following} | Amigos: ${amigos}</h3>
 
-
-
     </div>
+
+
 
 </header>
 
@@ -44,7 +50,7 @@
                                     <div class="likes">${post.getNumLikes()}</div>
                                 </div>
                                 <div class="description">
-                                ${post.getCuerpo()}
+                                    ${post.getCuerpo()}
                                     <#list post.getEtiquetas() as etiqueta>
                                         <span>#${etiqueta.getEtiqueta()} </span>
                                     </#list>
@@ -53,6 +59,7 @@
                             </div>
                         </div>
                     </#list>
+
 
                     </div>
                 </div>

@@ -63,6 +63,10 @@
                                                             <input type="submit" value="Dejar de ser Amigo" style="float: right">
                                                             <input type="hidden" value="${usuario.getUsername()}" name="id" />
                                                         </form>
+                                                        <form action="/crearpost">
+                                                            <input style="float: right" type="submit" value="Crear Post">
+                                                        </form>
+
                                                         <#assign x = 4>
                                                         <#break >
                                                     </#if>
@@ -73,12 +77,14 @@
                                                             <input type="hidden" value="${usuario.getUsername()}" name="id" />
                                                         </form>
 
+
                                                 </#list>
                                                 <#if x==3>
                                                     <form action="/agregar_amigo">
                                                         <input type="submit" value="Agregar Amigo" style="float: right">
                                                         <input type="hidden" value="${usuario.getUsername()}" name="id" />
                                                     </form>
+
                                                 </#if>
 
 
